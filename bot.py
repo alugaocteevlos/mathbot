@@ -15,10 +15,11 @@ bot = telebot.TeleBot(config.token)
 
 
 command_list = '''Telegram-bot with mathematical functions (v. 0.0.1)
+
 Math functions:
-/nod a b c d ... - НОД(a, b, c, d, ...)
-/nok a b c d ... - НОК(a, b, c, d, ...)
-/factor a - Факторизация числа а
+/nod a b c d ... - GCD(a, b, c, d, ...) - Greatest Common Divisor.
+/nok a b c d ... - LCM(a, b, c, d, ...) - Least Common Multiple.
+/factor a - Factorization of number а.
 
 For help type /help.'''
 
