@@ -69,3 +69,47 @@ def factor(message):
     message_factor = f'Factorization of number {for_msg} = {factor}.'
     
     return message_factor
+
+
+def polynoms_add(message):
+    
+    polynoms = message.text.split('/polynoms_add ')[1]
+    poly_1 = polynoms.split(' + ')[0]
+    poly_2 = polynoms.split(' + ')[1]
+    coef_1 = [int(x) for x in poly_1.split(' ')[0:]]
+    coef_2 = [int(x) for x in poly_2.split(' ')[0:]]
+    msg = f'Sum of polynomials with coefficients {coef_1} and {coef_2}'
+
+    if len(coef_1) < len(coef_2):
+        while len(coef_1) != len(coef_2):
+            coef_1.insert(0, 0)
+    else:
+        while len(coef_1) != len(coef_2):
+            coef_2.insert(0, 0)
+        
+    sum_coef = [coef_1[i] + coef_2[i] for i in range(len(coef_1))]
+    message_poly_sum = f'{msg} is polynomial with coefficients {sum_coef}.'
+    
+    return message_poly_sum
+
+
+def polynoms_sub(message):
+    
+    polynoms = message.text.split('/polynoms_sub ')[1]
+    poly_1 = polynoms.split(' - ')[0]
+    poly_2 = polynoms.split(' - ')[1]
+    coef_1 = [int(x) for x in poly_1.split(' ')[0:]]
+    coef_2 = [int(x) for x in poly_2.split(' ')[0:]]
+    msg = f'Subtraction of polynomials with coefficients {coef_1} and {coef_2}'
+
+    if len(coef_1) < len(coef_2):
+        while len(coef_1) != len(coef_2):
+            coef_1.insert(0, 0)
+    else:
+        while len(coef_1) != len(coef_2):
+            coef_2.insert(0, 0)
+        
+    sub_coef = [coef_1[i] - coef_2[i] for i in range(len(coef_1))]
+    message_poly_sub = f'{msg} is polynomial with coefficients {sub_coef}.'
+    
+    return message_poly_sub
