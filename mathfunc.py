@@ -1,6 +1,6 @@
 def nod(message):
     
-    numbers = [int(x) for x in message.text.split(' ')[1:]]
+    numbers = [int(x) for x in message.split(' ')[1:]]
     for_msg = f'GCD of numbers {numbers}'
     
     for i in numbers:
@@ -27,7 +27,7 @@ def nod(message):
                 
 def nok(message):
     
-    numbers = [int(x) for x in message.text.split(' ')[1:]]
+    numbers = [int(x) for x in message.split(' ')[1:]]
     for_msg = f'LCM of numbers {numbers}'
     
     for i in numbers:
@@ -55,7 +55,7 @@ def nok(message):
                 
 def factor(message):
     
-    number = int(message.text.split()[1])
+    number = int(message.split()[1])
     for_msg = number
     i = 2
     factor = []
@@ -73,7 +73,7 @@ def factor(message):
 
 def polynoms_add(message):
     
-    polynoms = message.text.split('/polynoms_add ')[1]
+    polynoms = message.split('/polynoms_add ')[1]
     poly_1 = polynoms.split(' + ')[0]
     poly_2 = polynoms.split(' + ')[1]
     coef_1 = [int(x) for x in poly_1.split(' ')[0:]]
@@ -95,7 +95,7 @@ def polynoms_add(message):
 
 def polynoms_sub(message):
     
-    polynoms = message.text.split('/polynoms_sub ')[1]
+    polynoms = message.split('/polynoms_sub ')[1]
     poly_1 = polynoms.split(' - ')[0]
     poly_2 = polynoms.split(' - ')[1]
     coef_1 = [int(x) for x in poly_1.split(' ')[0:]]

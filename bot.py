@@ -45,27 +45,32 @@ def help(message):
     
 @bot.message_handler(commands=['nod'])
 def nod(message):
-    msg = bot.send_message(message.chat.id, mathfunc.nod(message))
+    msg = f'{message.text}'
+    answer = bot.send_message(message.chat.id, mathfunc.nod(msg))
     
     
 @bot.message_handler(commands=['nok'])
 def nok(message):
-    msg = bot.send_message(message.chat.id, mathfunc.nok(message))
+    msg = f'{message.text}'
+    answer = bot.send_message(message.chat.id, mathfunc.nok(msg))
 
     
 @bot.message_handler(commands=['factor'])
 def factor(message):
-    msg = bot.send_message(message.chat.id, mathfunc.factor(message))
+    msg = f'{message.text}'
+    answer = bot.send_message(message.chat.id, mathfunc.factor(msg))
     
 
 @bot.message_handler(commands=['polynoms_add'])
 def polynoms_add(message):
-    msg = bot.send_message(message.chat.id, mathfunc.polynoms_add(message))
+    msg = f'{message.text}'
+    answer = bot.send_message(message.chat.id, mathfunc.polynoms_add(msg))
     
     
 @bot.message_handler(commands=['polynoms_sub'])
 def polynoms_sub(message):
-    msg = bot.send_message(message.chat.id, mathfunc.polynoms_sub(message))
+    msg = f'{message.text}'
+    answer = bot.send_message(message.chat.id, mathfunc.polynoms_sub(msg))
     
 
 bot.polling()
