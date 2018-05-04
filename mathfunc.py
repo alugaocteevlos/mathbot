@@ -1,3 +1,6 @@
+import re
+
+
 def nod(message):
     
     numbers = [int(x) for x in message.split(' ')[1:]]
@@ -74,8 +77,7 @@ def factor(message):
 def polynoms_add(message):
     
     polynoms = message.split('/polynoms_add ')[1]
-    poly_1 = polynoms.split(' + ')[0]
-    poly_2 = polynoms.split(' + ')[1]
+    poly_1, poly_2 = polynoms.split(' + ')[0:2]
     coef_1 = [int(x) for x in poly_1.split(' ')[0:]]
     coef_2 = [int(x) for x in poly_2.split(' ')[0:]]
     msg = f'Sum of polynomials with coefficients {coef_1} and {coef_2}'
@@ -96,8 +98,7 @@ def polynoms_add(message):
 def polynoms_sub(message):
     
     polynoms = message.split('/polynoms_sub ')[1]
-    poly_1 = polynoms.split(' - ')[0]
-    poly_2 = polynoms.split(' - ')[1]
+    poly_1, poly_2 = polynoms.split(' - ')[0:2]
     coef_1 = [int(x) for x in poly_1.split(' ')[0:]]
     coef_2 = [int(x) for x in poly_2.split(' ')[0:]]
     msg = f'Subtraction of polynomials with coefficients {coef_1} and {coef_2}'
@@ -113,3 +114,39 @@ def polynoms_sub(message):
     message_poly_sub = f'{msg} is polynomial with coefficients {sub_coef}.'
     
     return message_poly_sub
+
+
+def polynoms_mul(message):
+    
+    polynoms = message.split('/polynoms_mul ')[1]
+    polynom_1, polynom_2 = polynoms.split('*')[0:2]
+    coef_1 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", polynom_1)]
+    coef_2 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", polynom_2)]
+    for_msg = f'Multiplication of polynomials with coefficients {coef_1} and {coef_2}'
+    coefs = []
+    
+    for i in range(len(coef_2)):
+        coefs.append([])
+        
+    m = len(coef_1) + len(coef_2) - 1
+    j = 0    
+    k = 0
+    
+    while j < len(coef_2):
+        coefs[k] = [0 for i in range(m)]
+        for i in coef_1:
+            icm = coef_1.index(i) + j
+            coefs[k][icm] = i*coef_2[j]
+        j += 1
+        k += 1
+        
+    n = 0
+    mul_coef = [0 for i in range(m)]
+    
+    while n < len(coefs):
+        mul_coef = [mul_coef[i] + coefs[n][i] for i in range(len(coefs[n]))]
+        n += 1
+            
+    message_poly_mul = f'{for_msg} is polynomial with coefficients {mul_coef}.'
+    
+    return message_poly_mul

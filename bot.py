@@ -29,6 +29,12 @@ please write '2 0 7 0 -1 14 + 0 8 11 0 0 -2'.
 ATTENTION! Please write spaces around '+'.
 /polynoms_sub - the same thing, only subtraction of polynomials.
 Instead of '+' please write '-'.
+/polynoms_mul (a1+a2+...+an)*(b1+b2+...+bn) - Multiplication
+polynomials with coefficients a1, a2, ... , an and b1, b2, ... , bn, 
+where these coefficients begin with the highest power of the polynomial.
+If some power is not - write '0'.
+Example, for (2x^5+7x^3-x+14)*(8x^4+11x^3-2)
+please write '(2+0+7+0-1+14)*(8+11+0+0-2)'.
 
 For help type /help.'''
 
@@ -72,5 +78,11 @@ def polynoms_sub(message):
     msg = f'{message.text}'
     answer = bot.send_message(message.chat.id, mathfunc.polynoms_sub(msg))
     
+    
+@bot.message_handler(commands=['polynoms_mul'])
+def polynoms_mul(message):
+    msg = f'{message.text}'
+    answer = bot.send_message(message.chat.id, mathfunc.polynoms_mul(msg))
+
 
 bot.polling()
