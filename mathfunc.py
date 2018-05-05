@@ -77,9 +77,9 @@ def factor(message):
 def polynoms_add(message):
     
     polynoms = message.split('/polynoms_add ')[1]
-    poly_1, poly_2 = polynoms.split(' + ')[0:2]
-    coef_1 = [int(x) for x in poly_1.split(' ')[0:]]
-    coef_2 = [int(x) for x in poly_2.split(' ')[0:]]
+    poly_1, poly_2 = polynoms.split(')+(')[0:2]
+    coef_1 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", poly_1)]
+    coef_2 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", poly_2)]
     msg = f'Sum of polynomials with coefficients {coef_1} and {coef_2}'
 
     if len(coef_1) < len(coef_2):
@@ -98,9 +98,9 @@ def polynoms_add(message):
 def polynoms_sub(message):
     
     polynoms = message.split('/polynoms_sub ')[1]
-    poly_1, poly_2 = polynoms.split(' - ')[0:2]
-    coef_1 = [int(x) for x in poly_1.split(' ')[0:]]
-    coef_2 = [int(x) for x in poly_2.split(' ')[0:]]
+    poly_1, poly_2 = polynoms.split(')-(')[0:2]
+    coef_1 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", poly_1)]
+    coef_2 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", poly_2)]
     msg = f'Subtraction of polynomials with coefficients {coef_1} and {coef_2}'
 
     if len(coef_1) < len(coef_2):

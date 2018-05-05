@@ -20,16 +20,15 @@ Math functions:
 /nod a b c d ... - GCD(a, b, c, d, ...) - Greatest Common Divisor.
 /nok a b c d ... - LCM(a, b, c, d, ...) - Least Common Multiple.
 /factor a - Factorization of number а.
-/polynoms_add a1 a2 a3 ... an + b1 b2 b3 ... bn - Sum polynomials with
-coefficients a1, a2, a3, ... , an and b1, b2, b3, ... , bn, where
+/polynoms_add (a1+a2+a3+...+an)+(b1+b2+b3+...+bn) - Addition of polynomials 
+with coefficients a1, a2, a3, ... , an and b1, b2, b3, ... , bn, where
 these coefficients begin with the highest power of the polynomial.
 If some power is not - write '0'.
 Example, for (2x^5+7x^3-x+14)+(8x^4+11x^3-2)
-please write '2 0 7 0 -1 14 + 0 8 11 0 0 -2'.
-ATTENTION! Please write spaces around '+'.
+please write '(2+0+7+0-1+14)+(8+11+0+0-2)'.
 /polynoms_sub - the same thing, only subtraction of polynomials.
 Instead of '+' please write '-'.
-/polynoms_mul (a1+a2+...+an)*(b1+b2+...+bn) - Multiplication
+/polynoms_mul (a1+a2+...+an)*(b1+b2+...+bn) - Multiplication of
 polynomials with coefficients a1, a2, ... , an and b1, b2, ... , bn, 
 where these coefficients begin with the highest power of the polynomial.
 If some power is not - write '0'.
