@@ -36,6 +36,8 @@ Example, for (2x^5+7x^3-x+14)*(8x^4+11x^3-2)
 please write '(2+0+7+0-1+14)*(8+11+0+0-2)'.
 /polynoms_div - the same thing, only division of polynomials.
 Instead of '*' please write '/'.
+/lin_dep a b - Linear Decomposition of numbers a and b.
+Linear Decomposition is a*m + b*n = GCD(a, b).
 
 For help type /help.'''
 
@@ -90,6 +92,12 @@ def polynoms_mul(message):
 def polynoms_div(message):
     msg = f'{message.text}'
     answer = bot.send_message(message.chat.id, mathfunc.polynoms_div(msg))
+
+    
+@bot.message_handler(commands=['lin_dep'])
+def lin_dep(message):
+    msg = f'{message.text}'
+    answer = bot.send_message(message.chat.id, mathfunc.lin_dep(msg))
 
 
 bot.polling()

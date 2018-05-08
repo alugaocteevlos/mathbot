@@ -158,8 +158,7 @@ def polynoms_mul(message):
 def polynoms_div(message):
     
     polynoms = message.split('/polynoms_div ')[1]
-    polynom_1 = polynoms.split('/')[0]
-    polynom_2 = polynoms.split('/')[1]
+    polynom_1, polynom_2 = polynoms.split('/')[0:2]
     coef_1 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", polynom_1)]
     coef_2 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", polynom_2)]
     for_msg = f'Division of polynomials with coefficients {coef_1} and {coef_2}'
@@ -256,3 +255,27 @@ def polynoms_div(message):
         msg_poly_div = f'{for_msg} is polynomial with coefficients {cd} and {rm}'
     
     return msg_poly_div
+
+
+def euclidean_algorithm(a, b):
+    
+    if not b:
+        return (1, 0, a)
+    
+    y, x, gcd = euclidean_algorithm(b, a%b)
+    
+    return (x, y - (a // b) * x, gcd)
+
+
+def lin_dep(message):
+    
+    numbers = [int(x) for x in message.split(' ')[1:3]]
+    for_msg = f'Linear decomposition of numbers {numbers[0]} and {numbers[1]}'
+    
+    answer = [int(x) for x in euclidean_algorithm(numbers[0], numbers[1])]
+    check_gcd = answer[0]*numbers[0] + answer[1]*numbers[1]
+    
+    coefs = f'{answer[0]}*{numbers[0]} + {answer[1]}*{numbers[1]}'
+    msg_lin_dep = f'{for_msg} is {coefs} = {check_gcd}.'
+    
+    return msg_lin_dep
