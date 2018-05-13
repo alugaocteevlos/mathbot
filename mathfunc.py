@@ -63,13 +63,24 @@ def factor(message):
     i = 2
     factor = []
     
-    while number > 1:
-        while number % i == 0:
-            factor.append(i)
-            number //= i
-        i += 1
-    
-    if len(factor) == 1:
+    if number > 0:
+        while number > 1:
+            while number % i == 0:
+                factor.append(i)
+                number //= i
+            i += 1
+            
+    elif number < 0:
+        num = -number
+        while num > 1:
+            while num % i == 0:
+                factor.append(i)
+                num //=i
+            i += 1
+        tmp = factor[0]
+        factor[0] = -tmp
+        
+    if len(factor) <= 1:
         message_factor = f'{for_msg} - prime number.'
     else:
         message_factor = f'Factorization of number {for_msg} = {factor}.'
@@ -126,31 +137,36 @@ def polynoms_mul(message):
     coef_1 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", polynom_1)]
     coef_2 = [int(x) for x in re.findall(r"[*-][0-9]+|[0-9]+", polynom_2)]
     for_msg = f'Multiplication of polynomials with coefficients {coef_1} and {coef_2}'
-    coefs = []
     
-    for i in range(len(coef_2)):
+    coefs = []
+    for i in range(len(coef_1)*len(coef_2)):
         coefs.append([])
         
     m = len(coef_1) + len(coef_2) - 1
-    j = 0    
-    k = 0
+    i = 0
+    j = 0
     
-    while j < len(coef_2):
-        coefs[k] = [0 for i in range(m)]
-        for i in coef_1:
-            icm = coef_1.index(i) + j
-            coefs[k][icm] = i*coef_2[j]
-        j += 1
-        k += 1
-        
-    n = 0
-    mul_coef = [0 for i in range(m)]
+    while i < len(coef_1):
+        k = 0
+        while k < len(coef_2):
+            coefs[j] = [0 for i in range(m-1)]
+            coefs[j].insert(i+k, coef_1[i]*coef_2[k])
+            k += 1
+            j += 1
+        i += 1
+            
+    n = 0      
+    coef_mul = [0 for i in range(m)]
     
     while n < len(coefs):
-        mul_coef = [mul_coef[i] + coefs[n][i] for i in range(len(coefs[n]))]
+        coef_mul = [coef_mul[i] + coefs[n][i] for i in range(m)]
         n += 1
-            
-    msg_poly_mul = f'{for_msg} is polynomial with coefficients {mul_coef}.'
+        
+    if coef_mul[0] == 0:
+        while coef_mul[0] == 0:
+            del coef_mul[0]
+        
+    msg_poly_mul = f'{for_msg} is polynomial with coefficients {coef_mul}.'
     
     return msg_poly_mul
 

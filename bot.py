@@ -42,62 +42,96 @@ Linear Decomposition is a*m + b*n = GCD(a, b).
 For help type /help.'''
 
 
+error = ''''Oops! Something is written incorrectly...
+Please use /help for correct answer.'''
+
+
 @bot.message_handler(commands=['start'])
 def start(message):
-    msg = bot.send_message(message.chat.id, command_list)
-
+    try:
+        msg = bot.send_message(message.chat.id, command_list)
+    except:
+        bot.send_message(message.chat.id, command_list)
+    
     
 @bot.message_handler(commands=['help'])
 def help(message):
-    msg = bot.send_message(message.chat.id, command_list)
+    try:
+        msg = bot.send_message(message.chat.id, command_list)
+    except:
+        bot.send_message(message.chat.id, command_list)
     
     
 @bot.message_handler(commands=['gcd'])
 def gcd(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.gcd(msg))
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.gcd(msg))
+    except:
+        bot.send_message(message.chat.id, error)
     
     
 @bot.message_handler(commands=['lcm'])
 def lcm(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.lcm(msg))
-
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.lcm(msg))
+    except:
+        bot.send_message(message.chat.id, error)
+    
     
 @bot.message_handler(commands=['factor'])
 def factor(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.factor(msg))
-    
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.factor(msg))
+    except:
+        bot.send_message(message.chat.id, error)
 
+        
 @bot.message_handler(commands=['polynoms_add'])
 def polynoms_add(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.polynoms_add(msg))
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.polynoms_add(msg))
+    except:
+        bot.send_message(message.chat.id, error)
     
     
 @bot.message_handler(commands=['polynoms_sub'])
 def polynoms_sub(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.polynoms_sub(msg))
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.polynoms_sub(msg))
+    except:
+        bot.send_message(message.chat.id, error)
     
     
 @bot.message_handler(commands=['polynoms_mul'])
 def polynoms_mul(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.polynoms_mul(msg))
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.polynoms_mul(msg))
+    except:
+        bot.send_message(message.chat.id, error)
     
     
 @bot.message_handler(commands=['polynoms_div'])
 def polynoms_div(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.polynoms_div(msg))
-
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.polynoms_div(msg))
+    except:
+        bot.send_message(message.chat.id, error)
+    
     
 @bot.message_handler(commands=['lin_dep'])
 def lin_dep(message):
-    msg = f'{message.text}'
-    answer = bot.send_message(message.chat.id, mathfunc.lin_dep(msg))
-
+    try:
+        msg = f'{message.text}'
+        answer = bot.send_message(message.chat.id, mathfunc.lin_dep(msg))
+    except:
+        bot.send_message(message.chat.id, error)
+        
 
 bot.polling()
